@@ -51,19 +51,14 @@ const Register = () => {
       email: values.email,
       gender: 1,
     }
-    await fetch('http://localhost:5000/users', {
+    const res = await fetch(`http://localhost:5000/users/`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
       },
       body: JSON.stringify(userInfo),
     })
-      .then((res) => {
-        return res.json()
-      })
-      .catch((err) => {
-        alert(err)
-      })
+    console.log(res.json())
   }
 
   return (

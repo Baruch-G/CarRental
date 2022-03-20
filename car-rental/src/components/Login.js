@@ -15,19 +15,21 @@ import FilledInput from '@mui/material/FilledInput'
 import { FaTimes } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import Button from '@mui/material/Button'
-import { OutlinedFlagOutlined } from '@mui/icons-material'
+import { Label, OutlinedFlagOutlined } from '@mui/icons-material'
+import { useNavigate } from 'react-router-dom'
 
-const Login = () => {
+const Login = ({ onLogin }) => {
+  const navigate = useNavigate()
+
   const [values, setValues] = React.useState({
     amount: '',
     password: '',
     weight: '',
     weightRange: '',
     showPassword: false,
+    errVisible: false,
     userName: '',
   })
-
-  const [user, setUser] = React.useState({})
 
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value })
@@ -46,7 +48,7 @@ const Login = () => {
   const logIn = (e) => {
     e.preventDefault()
 
-    setUserObj(values.userName, values.password).then()
+    setUserObj(values.userName, values.password)
 
     console.log('loged in')
   }
@@ -58,11 +60,15 @@ const Login = () => {
         return res.json()
       })
       .then((data) => {
-        setUser(
-          data.find(
-            (user) => user.userName == userName && user.password == password,
-          ),
+        var resUser = data.find(
+          (user) => user.id == userName && user.password == password,
         )
+        if (resUser) {
+          onLogin(resUser)
+          navigate(`/`)
+        } else {
+          setValues({ ...values, errVisible: true })
+        }
       })
   }
 
@@ -115,6 +121,16 @@ const Login = () => {
               />
             </FormControl>
           </CardContent>
+          {values.errVisible && (
+            <p
+              style={{
+                marginTop: -20,
+                color: 'red',
+              }}
+            >
+              שם משתמש או סיסמא אינם נכונים
+            </p>
+          )}
           <Button
             style={{ width: 300 }}
             type="submit"
@@ -146,10 +162,6 @@ const Login = () => {
   )
 }
 
-const textFieldStyle = {
-  width: 400,
-  marginTop: 20,
-}
 const gridStyle = {
   display: 'grid',
   justifyItems: 'center',

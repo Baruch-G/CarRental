@@ -8,12 +8,18 @@ import FindCar from './components/FindCar'
 import Register from './components/Register'
 
 function App() {
+  const [user, setUser] = React.useState({})
+
+  const setUserState = (user) => {
+    setUser(user)
+  }
+
   return (
     <Router>
       <div>
-        <Navbar />
+        <Navbar user={user} />
         <Routes>
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login onLogin={setUserState} />} />
           <Route path="/find-car" element={<FindCar />} />
           <Route path="/register" element={<Register />} />
           <Route

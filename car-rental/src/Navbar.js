@@ -9,18 +9,33 @@ import MenuIcon from '@mui/icons-material/Menu'
 import { Link } from 'react-router-dom'
 import SearchIcon from '@mui/icons-material/Search'
 import LoginIcon from '@mui/icons-material/Login'
+import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 
-export default function Navbar() {
+export default function Navbar({ user }) {
+  React.useEffect(() => {
+    console.log(user.firstName)
+  })
   const tabItems = [
     {
+      id: 'login',
       content: 'התחברות',
       link: '/login',
       icon: <LoginIcon />,
+      isVisible: !user.firstName,
     },
     {
+      id: 'userIcon',
+      content: user.firstName,
+      link: '/',
+      icon: <AccountCircleIcon />,
+      isVisible: user.firstName,
+    },
+    {
+      id: 'findCar',
       content: 'מצא רכב',
       link: '/find-car',
       icon: <SearchIcon />,
+      isVisible: true,
     },
   ]
 
@@ -32,14 +47,18 @@ export default function Navbar() {
             גלובוס אוטו
           </Typography>
 
-          {tabItems.map((item, index) => (
-            <Link key={index} to={item.link}>
-              <Button style={navBtnStyle} color="inherit">
-                {item.content}
-                {item.icon}
-              </Button>
-            </Link>
-          ))}
+          {tabItems
+            .filter((i) => i.isVisible)
+            .map((item) => (
+              <React.Fragment key={item.id}>
+                <Link to={item.link}>
+                  <Button style={navBtnStyle} color="inherit">
+                    {item.content}
+                    {item.icon}
+                  </Button>
+                </Link>
+              </React.Fragment>
+            ))}
         </Toolbar>
       </AppBar>
     </Box>
