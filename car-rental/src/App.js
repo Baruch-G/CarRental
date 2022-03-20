@@ -5,6 +5,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Navbar from './Navbar'
 import FindCar from './components/FindCar'
+import Register from './components/Register'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/find-car" element={<FindCar />} />
+          <Route path="/register" element={<Register />} />
           <Route
             path="/"
             element={

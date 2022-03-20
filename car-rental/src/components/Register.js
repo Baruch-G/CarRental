@@ -17,21 +17,23 @@ import { Link } from 'react-router-dom'
 import Button from '@mui/material/Button'
 import { OutlinedFlagOutlined } from '@mui/icons-material'
 
-const Login = () => {
+const Register = () => {
   const [values, setValues] = React.useState({
-    amount: '',
+    firstName: '',
+    lastName: '',
+    id: '',
     password: '',
+    ensurePass: '',
     weight: '',
     weightRange: '',
     showPassword: false,
-    userName: '',
+    email: '',
   })
-
-  const [user, setUser] = React.useState({})
 
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value })
   }
+
   const handleClickShowPassword = () => {
     setValues({
       ...values,
@@ -39,37 +41,35 @@ const Login = () => {
     })
   }
 
-  // const handleMouseDownPassword = (event) => {
-  //   event.preventDefault()
-  // }
-
-  const logIn = (e) => {
+  const postUser = async (e) => {
     e.preventDefault()
-
-    setUserObj(values.userName, values.password).then()
-
-    console.log('loged in')
-  }
-
-  const setUserObj = async (userName, password) => {
-    console.log(userName + ' ' + password)
-    await fetch('http://localhost:5000/users')
+    var userInfo = {
+      id: values.id,
+      firstName: values.firstName,
+      lastName: values.lastName,
+      password: values.password,
+      email: values.email,
+      gender: 1,
+    }
+    await fetch('http://localhost:5000/users', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(userInfo),
+    })
       .then((res) => {
         return res.json()
       })
-      .then((data) => {
-        setUser(
-          data.find(
-            (user) => user.userName == userName && user.password == password,
-          ),
-        )
+      .catch((err) => {
+        alert(err)
       })
   }
 
   return (
     <center>
       <Card style={cardStyle} sx={{ minWidth: 100 }}>
-        <form style={gridStyle} onSubmit={logIn}>
+        <form style={gridStyle} onSubmit={postUser}>
           <div style={{ justifySelf: 'end' }}>
             <Link to="/">
               {' '}
@@ -77,26 +77,42 @@ const Login = () => {
             </Link>
           </div>
           <CardContent>
-            <h3>הזן שם משתמש וסיסמא</h3>
+            <h3>נא מלאו את השדות הבאים</h3>
             <FormControl sx={{ m: 1, width: '50ch' }} variant="filled">
-              <InputLabel htmlFor="filled-adornment">שם משתמש</InputLabel>
+              <InputLabel htmlFor="filled-adornment">שם פרטי</InputLabel>
               <FilledInput
-                id="filled-adornment"
+                id="first-name"
                 type="text"
-                value={values.userName}
-                onChange={handleChange('userName')}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <AccountCircle />
-                  </InputAdornment>
-                }
+                value={values.firstName}
+                onChange={handleChange('firstName')}
               />
             </FormControl>
             <br></br>
+
+            <FormControl sx={{ m: 1, width: '50ch' }} variant="filled">
+              <InputLabel htmlFor="filled-adornment">שם משפחה</InputLabel>
+              <FilledInput
+                id="last-name"
+                type="text"
+                value={values.lastName}
+                onChange={handleChange('lastName')}
+              />
+            </FormControl>
+
+            <FormControl sx={{ m: 1, width: '50ch' }} variant="filled">
+              <InputLabel htmlFor="filled-adornment">מספר זהות</InputLabel>
+              <FilledInput
+                id="id-num"
+                type="text"
+                value={values.id}
+                onChange={handleChange('id')}
+              />
+            </FormControl>
+
             <FormControl sx={{ m: 1, width: '50ch' }} variant="filled">
               <InputLabel htmlFor="filled-adornment-password">סיסמא</InputLabel>
               <FilledInput
-                id="filled-adornment-password"
+                id="pass"
                 type={values.showPassword ? 'text' : 'password'}
                 value={values.password}
                 onChange={handleChange('password')}
@@ -105,13 +121,41 @@ const Login = () => {
                     <IconButton
                       aria-label="toggle password visibility"
                       onClick={handleClickShowPassword}
-                      //onMouseDown={handleMouseDownPassword}
                       edge="end"
                     >
                       {values.showPassword ? <VisibilityOff /> : <Visibility />}
                     </IconButton>
                   </InputAdornment>
                 }
+              />
+            </FormControl>
+            <FormControl sx={{ m: 1, width: '50ch' }} variant="filled">
+              <InputLabel htmlFor="filled-adornment-password">סיסמא</InputLabel>
+              <FilledInput
+                id="ensure-pass"
+                type={values.showPassword ? 'text' : 'password'}
+                value={values.ensurePass}
+                onChange={handleChange('ensurePass')}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      edge="end"
+                    >
+                      {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+              />
+            </FormControl>
+            <FormControl sx={{ m: 1, width: '50ch' }} variant="filled">
+              <InputLabel htmlFor="filled-adornment">כתובת דוא"ל</InputLabel>
+              <FilledInput
+                id="email"
+                type="email"
+                value={values.email}
+                onChange={handleChange('email')}
               />
             </FormControl>
           </CardContent>
@@ -122,30 +166,13 @@ const Login = () => {
             variant="contained"
             disabled={false}
           >
-            התחבר
+            הרשמה
           </Button>
-
-          <div
-            style={{
-              marginTop: 20,
-              display: 'grid',
-              gridTemplateColumns: '1fr 0.5fr 1fr',
-            }}
-          >
-            <Link style={{ fontSize: 12 }} to="/@">
-              שכחתי סיסמא
-            </Link>
-            <span style={{ marginTop: -3 }}>|</span>
-            <Link style={{ fontSize: 12 }} to="/register">
-              הירשם לאתר
-            </Link>
-          </div>
         </form>
       </Card>
     </center>
   )
 }
-
 const textFieldStyle = {
   width: 400,
   marginTop: 20,
@@ -160,4 +187,4 @@ const cardStyle = {
   padding: 10,
 }
 
-export default Login
+export default Register

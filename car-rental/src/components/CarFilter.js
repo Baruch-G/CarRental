@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField'
 import { useState, useEffect } from 'react'
 import MenuItem from '@mui/material/MenuItem'
 
-export default function CarFilter() {
+const CarFilter = () => {
   const [brand, setBrand] = useState('')
   const [brands, setBrands] = useState([])
   const [models, setModels] = useState([])
@@ -22,11 +22,11 @@ export default function CarFilter() {
   const handleChangeManuf = (event) => {
     const t = event.target.value
     console.log(t)
-    setBrand(t)
+    setBrand({ value: t })
     console.log(brand)
 
-    // setModels(brands.find((i) => i.brand == brand).models)
-    console.log(brands.find((i) => i.brand == brand))
+    setModels(brands.find((i) => i.brand == brand).models)
+    //console.log(brands.find((i) => i.brand == brand))
   }
 
   const fetchBrands = async () => {
@@ -59,17 +59,16 @@ export default function CarFilter() {
           <TextField
             id="select-brand"
             select
+            type="text"
             label="יצרן"
             name="SelectBrand"
             value={brand}
             onChange={handleChangeManuf}
             helperText="בחר יצרן רכב"
-            defaultValue={brand}
+            defaultValue=""
           >
             {brands.map((car, index) => (
-              <MenuItem key={index} value={car.brand}>
-                {car.brand}
-              </MenuItem>
+              <p key={index}>{car.brand}</p>
             ))}
           </TextField>
 
@@ -100,3 +99,4 @@ export default function CarFilter() {
     </div>
   )
 }
+export default CarFilter
