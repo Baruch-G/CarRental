@@ -4,8 +4,6 @@ import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
-import IconButton from '@mui/material/IconButton'
-import MenuIcon from '@mui/icons-material/Menu'
 import { Link } from 'react-router-dom'
 import SearchIcon from '@mui/icons-material/Search'
 import LoginIcon from '@mui/icons-material/Login'
@@ -37,11 +35,18 @@ export default function Navbar({ user }) {
       icon: <SearchIcon />,
       isVisible: true,
     },
+    {
+      id: 'inventory',
+      content: 'מלאי רכבים',
+      link: '/find-car',
+      icon: <SearchIcon />,
+      isVisible: true,
+    },
   ]
 
   return (
     <Box style={{ direction: 'rtl' }} sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static" style={{ backgroundColor: '#343A40' }}>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             גלובוס אוטו

@@ -1,11 +1,7 @@
 import React from 'react'
-import TextField from '@mui/material/TextField'
-import Grid from '@mui/material/Grid'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import InputAdornment from '@mui/material/InputAdornment'
-import AccountCircle from '@mui/icons-material/AccountCircle'
-import OutlinedInput from '@mui/material/OutlinedInput'
 import IconButton from '@mui/material/IconButton'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
@@ -15,7 +11,6 @@ import FilledInput from '@mui/material/FilledInput'
 import { FaTimes } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import Button from '@mui/material/Button'
-import { OutlinedFlagOutlined } from '@mui/icons-material'
 
 const Register = () => {
   const [values, setValues] = React.useState({
@@ -155,7 +150,7 @@ const Register = () => {
             </FormControl>
           </CardContent>
           <Button
-            style={{ width: 300 }}
+            style={{ width: 300, backgroundColor: '#292929'  }}
             type="submit"
             size="large"
             variant="contained"

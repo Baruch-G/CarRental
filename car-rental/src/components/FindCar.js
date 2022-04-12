@@ -1,10 +1,7 @@
 import React from 'react'
 import CarCard from './CarCard'
 import { useState, useEffect } from 'react'
-import { styled } from '@mui/material/styles'
 import Grid from '@mui/material/Grid'
-import Paper from '@mui/material/Paper'
-import CarFilter from './CarFilter'
 
 const FindCar = () => {
   const [cars, setCars] = useState([])
@@ -27,17 +24,16 @@ const FindCar = () => {
 
   return (
     <div style={{ direction: 'rtl' }}>
-      <CarFilter />
       <Grid
         container
         style={{ marginTop: 20 }}
         justifyContent="center"
         alignItems="center"
         rowSpacing={6}
-        columnSpacing={{ xs: 2, sm: 4, md: 3 }}
+        // columnSpacing={{ xs: 2, sm: 4, md: 3 }}
       >
         {cars.map((car) => (
-          <Grid key={car.id} item xs={12} sm={4} md={3}>
+          <Grid key={car.id} item>
             <CarCard car={car} />
           </Grid>
         ))}
