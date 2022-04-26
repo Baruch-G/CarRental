@@ -8,15 +8,16 @@ import { Link } from 'react-router-dom'
 import SearchIcon from '@mui/icons-material/Search'
 import LoginIcon from '@mui/icons-material/Login'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
+import InventoryIcon from '@mui/icons-material/Inventory'
 
 export default function Navbar({ user }) {
   React.useEffect(() => {
-    console.log(user.firstName)
+    console.log('W')
   })
   const tabItems = [
     {
       id: 'login',
-      content: 'התחברות',
+      content: 'Log In',
       link: '/login',
       icon: <LoginIcon />,
       isVisible: !user.firstName,
@@ -30,27 +31,33 @@ export default function Navbar({ user }) {
     },
     {
       id: 'findCar',
-      content: 'מצא רכב',
+      content: 'Find a car',
       link: '/find-car',
       icon: <SearchIcon />,
       isVisible: true,
     },
     {
-      id: 'inventory',
-      content: 'מלאי רכבים',
-      link: '/find-car',
-      icon: <SearchIcon />,
+      id: 'inventory-management',
+      content: 'Inventory Management',
+      link: '/inventory-management',
+      icon: <InventoryIcon />,
       isVisible: true,
     },
   ]
 
   return (
-    <Box style={{ direction: 'rtl' }} sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" style={{ backgroundColor: '#343A40' }}>
         <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            גלובוס אוטו
-          </Typography>
+          <img
+            style={{ height: '40px' }}
+            src={require('./assets/FooterLogo.png')}
+          ></img>
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ flexGrow: 1 }}
+          ></Typography>
 
           {tabItems
             .filter((i) => i.isVisible)
@@ -72,4 +79,11 @@ export default function Navbar({ user }) {
 
 const navBtnStyle = {
   color: 'white',
+  textTransform: 'none',
+  letterSpacing: '1.2px'
 }
+const glomImgStyle = {
+  fontSize: 12,
+}
+
+const glomImg = '../../../public/Logo.png'

@@ -1,0 +1,11 @@
+.action-icon {
+    font-size: 18px;
+    color: white;
+
+}
+
+.action-icon:hover {
+    font-size: 27px;
+    font-weight: bold;
+    color: rgb(221, 221, 162)
+}

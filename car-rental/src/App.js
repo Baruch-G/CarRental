@@ -2,10 +2,11 @@ import './App.css'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Login from './components/Login'
 import React from 'react'
-import { Link } from 'react-router-dom'
 import Navbar from './Navbar'
 import FindCar from './components/FindCar'
 import Register from './components/Register'
+import EditInventoryCar from './components/EditInventoryCar'
+import InventoryManagement from './components/InventoryManagement'
 
 function App() {
   const [user, setUser] = React.useState({})
@@ -22,6 +23,12 @@ function App() {
           <Route path="/login" element={<Login onLogin={setUserState} />} />
           <Route path="/find-car" element={<FindCar />} />
           <Route path="/register" element={<Register />} />
+          <Route exact path="/edit-inventory-car" element={<EditInventoryCar />} />
+          <Route path="/edit-inventory-car/:id" exact element={<EditInventoryCar/>} />
+          <Route
+            path="/inventory-management"
+            element={<InventoryManagement />}
+          />
           <Route
             path="/"
             element={
@@ -31,6 +38,7 @@ function App() {
             }
           />
         </Routes>
+        {/* <Navbar/> */}
       </div>
     </Router>
   )

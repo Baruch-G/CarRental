@@ -1,20 +1,67 @@
 .overflow-hidden {
     padding-left: 5px;
-    background-color: rgb(55, 55, 55);
-    color: rgb(170, 170, 170);
+    background-color: rgb(55, 55, 55) !important;
     box-shadow: 0 4px 8px 0 rgba(120, 120, 120, 120);
     transition: all 0.2s ease-in-out;
-    max-height: 200px;
-    height: 500px;
-    width: 700px;
-  }
-  .overflow-hidden:hover {
-    box-shadow: 0 2px 4px 0 rgba(150, 150, 150, 150);
-    background-color: rgb(90, 90, 90);
-    color: white;
-    transition: all 0.2s ease-in-out;
-  }
-  .img-area {
     height: 100%;
-    width: 40%;
-  }
+    width: 100%;
+    color: white !important;
+}
+
+.card-container {
+    height: 200px;
+    width: 500px;
+}
+
+.overflow-hidden:hover {
+    box-shadow: 0 2px 4px 0 rgba(150, 150, 150, 150);
+    background-color: rgb(90, 90, 90) !important;
+    transform: scale(1.1);
+    transition: all 0.2s ease;
+}
+
+.img-area {
+    width: 65%;
+    height: 100%;
+    -webkit-filter: drop-shadow(2px 2px 0 white) drop-shadow(-2px 2px 0 white) drop-shadow(2px -2px 0 white) drop-shadow(-2px -2px 0 white);
+    filter: drop-shadow(2px 2px 0 white) drop-shadow(-2px 2px 0 white) drop-shadow(2px -2px 0 white) drop-shadow(-2px -2px 0 white);
+}
+
+.mybtn {
+    text-align: center;
+    height: 35px;
+    width: 150px;
+    background-color: white;
+    border: none;
+    font-weight: bold;
+    border-radius: 0px 10px 10px 0px;
+    letter-spacing: 1.2px;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transform: translateX(-300%);
+    -webkit-transform: translateX(-300%);
+}
+
+.mybtn:hover {
+    background-color: black;
+    color: white;
+    transition: 0.5s;
+}
+
+.slide-in {
+    animation: slide-in 0.5s forwards;
+    -webkit-animation: slide-in 0.5s forwards;
+}
+
+@keyframes slide-in {
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+@-webkit-keyframes slide-in {
+    100% {
+        -webkit-transform: translateX(0%);
+    }
+}
