@@ -78,7 +78,7 @@ const InventoryManagement = () => {
                     <Col>
                       <Link
                         style={{ textDecoration: 'none', cursor: 'default' }}
-                        to={`${m.id}`}
+                        to={`edit/${m.id}`}
                       >
                         <Tooltip title="Edit">
                           <ModeEditIcon className="action-icon" />

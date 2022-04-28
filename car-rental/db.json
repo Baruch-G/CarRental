@@ -6,6 +6,8 @@
       "lastName": "גינזבורג",
       "password": "Az300104010",
       "email": "0504599090@gmail.com",
+      "isEnable": true,
+      "isAdmin": true,
       "gender": 1
     },
     {
@@ -14,7 +16,9 @@
       "lastName": "חיות",
       "password": "Az300104",
       "email": "w0504599090@gmail.com",
-      "gender": 1
+      "isEnable": true,
+      "isAdmin": false,
+      "gender": 2
     }
   ],
   "carModels": [

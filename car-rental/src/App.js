@@ -7,6 +7,8 @@ import FindCar from './components/FindCar'
 import Register from './components/Register'
 import EditInventoryCar from './components/EditInventoryCar'
 import InventoryManagement from './components/InventoryManagement'
+import UsersManagemet from './components/UsersManagemet'
+import AddCarForm from './components/AddCarForm'
 
 function App() {
   const [user, setUser] = React.useState({})
@@ -23,11 +25,16 @@ function App() {
           <Route path="/login" element={<Login onLogin={setUserState} />} />
           <Route path="/find-car" element={<FindCar />} />
           <Route path="/register" element={<Register />} />
-          <Route exact path="/edit-inventory-car" element={<EditInventoryCar />} />
-          <Route path="/edit-inventory-car/:id" exact element={<EditInventoryCar/>} />
+          <Route path="/inventory-management/add" element={<AddCarForm />} />
+          <Route path="/users-management" element={<UsersManagemet />} />
           <Route
+            exact
             path="/inventory-management"
             element={<InventoryManagement />}
+          />
+          <Route
+            path="/inventory-management/edit/:id"
+            element={<EditInventoryCar />}
           />
           <Route
             path="/"
@@ -38,7 +45,6 @@ function App() {
             }
           />
         </Routes>
-        {/* <Navbar/> */}
       </div>
     </Router>
   )

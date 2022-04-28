@@ -9,12 +9,34 @@ import SearchIcon from '@mui/icons-material/Search'
 import LoginIcon from '@mui/icons-material/Login'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import InventoryIcon from '@mui/icons-material/Inventory'
+import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 
 export default function Navbar({ user }) {
   React.useEffect(() => {
     console.log('W')
   })
   const tabItems = [
+    {
+      id: 'inventory-management',
+      content: 'Inventory Management',
+      link: '/inventory-management',
+      icon: <InventoryIcon />,
+      isVisible: true,
+    },
+    {
+      id: 'users-management',
+      content: 'Inventory Users',
+      link: '/users-management',
+      icon: <PeopleAltIcon />,
+      isVisible: true,
+    },
+    {
+      id: 'findCar',
+      content: 'Find a car',
+      link: '/find-car',
+      icon: <SearchIcon />,
+      isVisible: true,
+    },
     {
       id: 'login',
       content: 'Log In',
@@ -29,20 +51,7 @@ export default function Navbar({ user }) {
       icon: <AccountCircleIcon />,
       isVisible: user.firstName,
     },
-    {
-      id: 'findCar',
-      content: 'Find a car',
-      link: '/find-car',
-      icon: <SearchIcon />,
-      isVisible: true,
-    },
-    {
-      id: 'inventory-management',
-      content: 'Inventory Management',
-      link: '/inventory-management',
-      icon: <InventoryIcon />,
-      isVisible: true,
-    },
+    
   ]
 
   return (
